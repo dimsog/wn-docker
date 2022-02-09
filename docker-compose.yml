@@ -1,0 +1,31 @@
+version: "3.9"
+services:
+  nginx:
+    build:
+      context: .
+      dockerfile: docker/nginx/Dockerfile
+    depends_on:
+      - php
+      - mysql
+    ports:
+      - "80:80"
+    volumes:
+      - ./www:/app
+  php:
+    build:
+      context: .
+      dockerfile: docker/php/Dockerfile
+    volumes:
+      - ./www:/app
+    environment:
+        XDEBUG_CONFIG: "remote_host=host.docker.internal remote_enable=1"
+        PHP_IDE_CONFIG: "serverName=Docker"
+  mysql:
+    build:
+      context: .
+      dockerfile: docker/mysql/Dockerfile
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=wintercms
+      - MYSQL_DATABASE=wintercms
