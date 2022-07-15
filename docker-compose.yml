@@ -8,7 +8,7 @@ services:
       - php
       - mysql
     ports:
-      - "80:80"
+      - "8080:80"
     volumes:
       - ./www:/app
   php:
@@ -25,7 +25,7 @@ services:
       context: .
       dockerfile: docker/mysql/Dockerfile
     ports:
-      - "3306:3306"
+      - "3307:3306"
     environment:
       - MYSQL_ROOT_PASSWORD=wintercms
       - MYSQL_DATABASE=wintercms
