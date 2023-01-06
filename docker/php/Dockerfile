@@ -1,7 +1,7 @@
 FROM php:8.2-fpm
 
 RUN apt-get update && apt-get install -y libcurl3-dev curl libzip-dev zip libwebp-dev libonig-dev libpq-dev libz-dev libmemcached-dev  git \
-    && docker-php-ext-install iconv mbstring pdo_mysql zip curl exif && pecl install memcached && docker-php-ext-enable memcached
+    && docker-php-ext-install iconv mbstring pdo_mysql zip curl exif
 
 RUN apt-get install -y build-essential libssl-dev zlib1g-dev libpng-dev libjpeg-dev libfreetype6-dev
 RUN docker-php-ext-configure gd --enable-gd --with-freetype --with-jpeg --with-webp && \
